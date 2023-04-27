@@ -11,11 +11,16 @@ class HomeContainer extends React.Component {
         }
     }
 
+    handleShop = () => {
+        this.props.history.navigate('/shop')
+    }
+
     render() {
         return (            
             <HomeComponent
                 {...this.props}
                 state = {this.state}
+                handleShop = {this.handleShop}
             />
         )
     }
