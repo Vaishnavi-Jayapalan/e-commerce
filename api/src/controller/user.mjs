@@ -17,7 +17,7 @@ export default class UserController {
             }
             const userDetails = await this.userModel.getUser(req.body)
             if(!userDetails.length) {
-                return this.response.errorResponse('Invalid Credentials!', ERROR_STATUS_CODE, res)
+                return this.response.errorResponse({message: 'Invalid Credentials!'}, ERROR_STATUS_CODE, res)
             }
             return this.response.getResponse('Login Success', GET_STATUS_CODE, res)
         } catch(e) {

@@ -62,7 +62,6 @@ class RegisterContainer extends React.Component {
         return (            
             <RegisterComponent
                 state = {this.state}
-                userState = {this.props.userState}
                 handleOnChange = {this.handleOnChange}
                 handleOnSubmit = {this.handleOnSubmit}
             />

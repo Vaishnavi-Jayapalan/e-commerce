@@ -25,3 +25,56 @@ code {
   height: 400px;
   width: 400px
 }
+
+.toast-position {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  height: 100px;
+}
+
+.toast-danger {
+  background-color: #f8d7da !important;
+  color: #721c24  !important;
+  border-color: #f5c6cb  !important;
+}
+
+.toast-success {
+  background-color: #d4edda  !important;
+  color: #155724  !important;
+  border-color: #c3e6cb  !important;
+}
+
+.resize-img-thumbnail {
+  width: 300px !important;
+  height: 300px !important;
+}
+
+.modal-bg-opacity {
+  background-color: black;
+  opacity: 0.75;
+}
+
+.modal-header {
+  color: whitesmoke;
+  font-size: 2.5rem;
+}
+
+.modal-content {
+  background-color: #3f3a3a !important;
+}
+
+.modal-dialog {
+  height: 100% !important;
+  width: 100% !important;
+}
+
+.carousel-inner {
+  height: 100% !important;
+  vertical-align: middle;
+}
+
+.carousel-item {
+  height: 100%;
+  text-align: center;
+}

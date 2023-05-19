@@ -11,9 +11,9 @@ export const initialState = {
 const loginReducer = (state=initialState, action) => {
     switch (action.type) {
         case LOGIN_USER_SUCCESS:
-            return Object.assign({}, state, action.payload);
+            return Object.assign({}, state, {isSuccess: true});
         case LOGIN_USER_FAILURE:
-            return Object.assign({}, state, action.payload);
+            return Object.assign({}, state, {isError: true, errors: action.payload.response.data.errors});
         case RESET_LOGIN_USER_ACTION:
             return Object.assign({}, state, initialState)
         default:

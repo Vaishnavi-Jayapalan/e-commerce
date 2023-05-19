@@ -13,6 +13,11 @@ function LoginComponent(props) {
                     <h2 className="pb-3">Login</h2>
                     <form>
                         <div className="form-group mb-3">
+                            {props.state.error && 
+                                <div style={{color: "red"}}>
+                                    {props.state.error.message}
+                                </div>
+                            }
                             <input type="email"
                                 className={props.state.errors.email ? "form-control is-invalid" : "form-control"}
                                 id="email"
@@ -43,8 +48,8 @@ function LoginComponent(props) {
                         <div className="mb-3">
                             <button type="submit"
                                 className="btn btn-primary btn-block"
-                                disabled = {props.state.errors.email || props.state.errors.password || !props.state.email || !props.state.password}
-                                onClick={()=> props.handleOnSubmit()}
+                                disabled = {props.state.errors.email || props.state.errors.password || !props.state.email || !props.state.password || props.state.error?.message}
+                                onClick={(e)=> props.handleOnSubmit(e)}
                             >Submit</button>
                         </div>
                         <div className="row mb-4">

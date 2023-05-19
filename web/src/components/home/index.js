@@ -1,36 +1,40 @@
 import React from "react";
+import ToastComponent from "../toast";
+import ImageModal from "./image-modal";
 
 function HomeComponent(props) {
+    const fileInputRef = React.useRef(null)
+
     return (
-        <div className="row justify-content-center" style={{"margin-top": '15%'}}>
-            <div className="card col-12 col-md-6 col-lg-4 md-pb">
-                <div className="card-wrapper">
-                    <div className="card-box text-center cursor-pointer">
-                        <h5 className="card-title mbr-fonts-style display-7"><strong>MY ORDERS</strong></h5>
-                        <img src="images/order.png" alt="shopping_cart" class="img-med"></img>
-                        <p className="card-text mbr-fonts-style display-7">Track your order status<br/></p>
-                    </div>
+        <>
+            <div className="container">
+                <div className="d-flex pt-5 pb-5">
+                    <h1 className="fw-light text-center text-lg-start mt-4 mb-0 col-lg-8">Photos Gallery</h1>
+                    <input type="file" ref={fileInputRef} style={{display: "none"}} onChange={(e) => props.handelOnChange(e)}/>
+                    <button type="button" onClick={() => fileInputRef.current.click()} className="btn btn-primary col-lg-3 mt-4">Upload Photos</button>
+                </div>
+                <div className="row text-center text-lg-start">
+                    {props.state.list && props.state.list.map((data) => {
+                        return (
+                            <div className="col-lg-3 col-md-4 col-6" key={data.id}>
+                                <div className="d-block mb-4 h-100 cursor-pointer" onClick={() => props.handleImageModal(data)}>
+                                    <img className="img-fluid img-thumbnail resize-img-thumbnail" itemProp="thumbnail" src={data.imgUrl} alt={data.name} />
+                                </div>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
-            <div className="card col-12 col-md-6 col-lg-4 md-pb" onClick={() => props.handleShop()}>
-                <div className="card-wrapper">
-                    <div className="card-box text-center cursor-pointer">
-                        <h5 className="card-title mbr-fonts-style display-7"><strong>SHOP NOW</strong></h5>
-                        <img src="images/shop.jpg" alt="fashion" class="img-med"></img>
-                        <p className="card-text mbr-fonts-style display-7">Select and wear to your liking</p>
-                    </div>
-                </div>
-            </div>
-            <div className="card col-12 col-md-6 col-lg-4 md-pb">
-                <div className="card-wrapper">
-                    <div className="card-box text-center cursor-pointer">
-                        <h5 className="card-title mbr-fonts-style display-7"><strong>MY PROFILE</strong></h5>
-                        <img src="images/profile.png" alt="profile" class="img-med"></img>
-                        <p className="card-text mbr-fonts-style display-7">Edit your profile, modify address</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <ToastComponent {...props.state.toastData} showToast={props.state.showToast} />
+            {props.state.showModal && 
+                <ImageModal 
+                    {...props.state.selectedImg} 
+                    toggleModal = {props.toggleModal} 
+                    showModal = {props.state.showModal} 
+                    handleCarouselPointers = {props.handleCarouselPointers}
+                />
+            }
+        </>
     )
 }
 
